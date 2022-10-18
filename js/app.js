@@ -11,9 +11,10 @@ export default class Sketch {
     this.width = this.container.offsetWidth;
     this.height = this.container.offsetHeight;
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(window.devicePixelRatio, 2);
     this.renderer.setSize(this.width, this.height);
     this.renderer.setClearColor(0xeeeeee, 1); 
+    this.renderer.physicallyCorrectLights = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
 
     this.container.appendChild(this.renderer.domElement);
@@ -62,6 +63,7 @@ export default class Sketch {
     this.camera.updateProjectionMatrix();
   }
 
+  // add objects to scene here
   addObjects() {
     let that = this;
     this.material = new THREE.ShaderMaterial({
@@ -82,10 +84,10 @@ export default class Sketch {
       fragmentShader: fragment
     });
 
-    this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+    this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1); // width, height, widthSegments, heightSegments
 
-    this.plane = new THREE.Mesh(this.geometry, this.material);
-    this.scene.add(this.plane);
+    this.plane = new THREE.Mesh(this.geometry, this.material); // geometry, material
+    this.scene.add(this.plane); // add test plane
   }
 
   stop() {
