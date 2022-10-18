@@ -38,7 +38,7 @@ export default class Sketch {
     this.resize();
     this.render();
     this.setupResize();
-    // this.settings();
+    // this.settings(); // enable for gui
   }
 
   settings() {
