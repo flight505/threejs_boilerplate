@@ -104,7 +104,7 @@ export default class Sketch {
   render() {
     if (!this.isPlaying) return;
     this.time += 0.05;
-    this.material.uniforms.time.value = this.time;
+    this.material.uniforms.time.value = this.time; // update time uniform in shader material for animation effect on object in scene ( for example test plane)   
     requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
   }
